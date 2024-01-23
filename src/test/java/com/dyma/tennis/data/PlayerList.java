@@ -1,4 +1,7 @@
-package com.dyma.tennis;
+package com.dyma.tennis.data;
+
+import com.dyma.tennis.Player;
+import com.dyma.tennis.Rank;
 
 import java.time.LocalDate;
 import java.time.Month;
