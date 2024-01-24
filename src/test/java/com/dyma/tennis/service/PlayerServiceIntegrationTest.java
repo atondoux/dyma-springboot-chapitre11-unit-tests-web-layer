@@ -12,6 +12,8 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class PlayerServiceIntegrationTest {
@@ -72,5 +74,17 @@ public class PlayerServiceIntegrationTest {
         Assertions.assertThat(allPlayers)
                 .extracting("lastName")
                 .containsExactly("NadalTest", "FedererTest");
+    }
+
+    @Test
+    public void shouldFailToDeletePlayer_WhenPlayerDoesNotExist() {
+        // Given
+        String playerToDelete = "DoeTest";
+
+        // When / Then
+        Exception exception = assertThrows(PlayerNotFoundException.class, () -> {
+            playerService.delete(playerToDelete);
+        });
+        Assertions.assertThat(exception.getMessage()).isEqualTo("Player with last name DoeTest could not be found.");
     }
 }
