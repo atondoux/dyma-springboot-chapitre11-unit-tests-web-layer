@@ -45,11 +45,11 @@ public class PlayerServiceTest {
     @Test
     public void shouldRetrievePlayer() {
         // Given
-        String nadal = "nadal";
-        Mockito.when(playerRepository.findOneByLastNameIgnoreCase(nadal)).thenReturn(Optional.of(PlayerEntityList.RAFAEL_NADAL));
+        String playerToRetrieve = "nadal";
+        Mockito.when(playerRepository.findOneByLastNameIgnoreCase(playerToRetrieve)).thenReturn(Optional.of(PlayerEntityList.RAFAEL_NADAL));
 
         // When
-        Player retrievedPlayer = playerService.getByLastName(nadal);
+        Player retrievedPlayer = playerService.getByLastName(playerToRetrieve);
 
         // Then
         Assertions.assertThat(retrievedPlayer.lastName()).isEqualTo("Nadal");

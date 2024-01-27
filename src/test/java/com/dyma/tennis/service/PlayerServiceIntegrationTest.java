@@ -3,6 +3,7 @@ package com.dyma.tennis.service;
 import com.dyma.tennis.Player;
 import com.dyma.tennis.PlayerToSave;
 import org.assertj.core.api.Assertions;
+import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -72,8 +73,8 @@ public class PlayerServiceIntegrationTest {
 
         // Then
         Assertions.assertThat(allPlayers)
-                .extracting("lastName")
-                .containsExactly("NadalTest", "FedererTest");
+                .extracting("lastName", "rank.position")
+                .containsExactly(Tuple.tuple("NadalTest", 1), Tuple.tuple("FedererTest", 2));
     }
 
     @Test
