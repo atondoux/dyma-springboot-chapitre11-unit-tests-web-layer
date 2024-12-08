@@ -61,6 +61,7 @@ public class PlayerControllerTest {
 
         // When / Then
         mockMvc.perform(get("/players/doe"))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.errorDetails", CoreMatchers.is("Player with last name doe could not be found.")));
     }
 }
